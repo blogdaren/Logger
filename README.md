@@ -12,7 +12,7 @@ composer require blogdaren/logger
 ```
 
 ## Dependencies
-* blogdaren/custom-terminal-color
+* packagist: blogdaren/custom-terminal-color
 
 ## Usage
 
@@ -33,12 +33,23 @@ while(1)
 ```
 
 ## Usage
-To be supplemented ...... 
+```php
+Logger::show($arg1, $arg2, $arg3, $arg4);
+* $arg1: message to be logged
+* $arg2: log level with 5 options: 
+(1) Logger::LOG_LEVEL_INFO
+(2) Logger::LOG_LEVEL_DEBUG
+(3) Logger::LOG_LEVEL_WARN
+(4) Logger::LOG_LEVEL_ERROR
+(5) Logger::LOG_LEVEL_CRAZY
+* $arg3: whether to print log or not on terminal
+* $arg4: where to store log file
+```
 
 ## Demostrate
-![demo1](https://github.com/blogdaren/Logger/blob/master/Image/demo1.png)
+![demo1](https://github.com/blogdaren/Logger/blob/master/media/demo1.png)
 ----
-![demo2](https://github.com/blogdaren/Logger/blob/master/Image/demo2.png)
+![demo2](https://github.com/blogdaren/Logger/blob/master/media/demo2.png)
 ----
 
 ## Related links and thanks
