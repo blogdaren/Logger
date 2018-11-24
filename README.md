@@ -37,13 +37,13 @@ while(1)
 Logger::show($arg1, $arg2, $arg3, $arg4);
 * $arg1: message to be logged
 * $arg2: log level with 5 options: 
-(1) Logger::LOG_LEVEL_INFO
-(2) Logger::LOG_LEVEL_DEBUG
-(3) Logger::LOG_LEVEL_WARN
-(4) Logger::LOG_LEVEL_ERROR
-(5) Logger::LOG_LEVEL_CRAZY
-* $arg3: whether to print log or not on terminal
-* $arg4: where to store log file
+  >> Logger::LOG_LEVEL_INFO
+  >> Logger::LOG_LEVEL_DEBUG
+  >> Logger::LOG_LEVEL_WARN
+  >> Logger::LOG_LEVEL_ERROR
+  >> Logger::LOG_LEVEL_CRAZY
+* $arg3: whether to print log or not on terminal, default `true`
+* $arg4: where to store log file, default `/tmp/default.log`
 ```
 
 ## Demostrate
