@@ -69,7 +69,7 @@ class Logger
      *
      * @var string
      */
-    static  public  $logFile = '/tmp/default.log';
+    static  public  $logFile = '';
 
     /**
      * standard output stream
@@ -178,7 +178,8 @@ class Logger
         $time = date("Y-m-d H:i:s") . "." . str_pad($ms, 6, 0);
         $prefix = "$time | $log_level | ";
         $msg = $prefix . $msg . PHP_EOL;
-        file_put_contents((string)self::$logFile, $msg, FILE_APPEND | LOCK_EX);
+
+        self::$logFile && file_put_contents((string)self::$logFile, $msg, FILE_APPEND | LOCK_EX);
 
         //show colorful text by level 
         $level == self::LOG_LEVEL_DEBUG && $msg = Color::getColorfulText($msg, 'purple');
@@ -198,20 +199,23 @@ class Logger
      *
      * @return   void
      */
-    static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '')
+    static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '/tmp/default.log')
     {
         if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
 
-        !empty($log_file) && self::$logFile = $log_file;
         self::$debug = $debug === true ? true : false;
+        self::$logFile = $log_file;
 
-        if(!is_file(self::$logFile))
+        if(!empty(self::$logFile))
         {
-            @touch(self::$logFile);
-            @chmod(self::$logFile, 0755);
-        }
+            if(!is_file(self::$logFile))
+            {
+                @touch(self::$logFile);
+                @chmod(self::$logFile, 0755);
+            }
 
-        if(!file_exists(self::$logFile))  throw new Exception('invalid log file path......');
+            if(!file_exists(self::$logFile))  throw new Exception('invalid log file path......');
+        }
 
         return self::_log($msg, $level);
     }
