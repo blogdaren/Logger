@@ -17,6 +17,7 @@
     ],
     "support": {
     },
+    "minimum-stability": "dev",
     "require": {
         "blogdaren/custom-terminal-color": "^1.0.0"
     },
@@ -26,6 +27,5 @@
         "psr-4": {
             "Logger\\": "./"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
