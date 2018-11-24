@@ -1,0 +1,7 @@
+*.log
+*.pid
+.idea
+.buildpath
+.project
+.settings
+vendor

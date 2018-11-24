@@ -1,0 +1,31 @@
+{
+    "name": "blogdaren/logger",
+    "type": "library",
+    "keywords": [
+        "logger"
+    ],
+    "homepage": "http://www.blogdaren.com",
+    "license": "MIT",
+    "description": "A simple console logger for PHP",
+    "authors": [
+        {
+            "name": "blogdaren",
+            "email": "blogdaren@163.com",
+            "homepage": "http://www.blogdaren.com",
+            "role": "developer"
+        }
+    ],
+    "support": {
+    },
+    "require": {
+        "blogdaren/custom-terminal-color": "dev-master"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Logger\\": "./"
+        }
+    },
+    "minimum-stability": "dev"
+}

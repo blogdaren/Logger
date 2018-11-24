@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "040d7d6270da82d19f81a37ba1655ec9",
+    "packages": [
+        {
+            "name": "blogdaren/custom-terminal-color",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blogdaren/CustomTerminalColor.git",
+                "reference": "bddaff2bddaaa7314e5509bcce4bf0b85e5533ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blogdaren/CustomTerminalColor/zipball/bddaff2bddaaa7314e5509bcce4bf0b85e5533ae",
+                "reference": "bddaff2bddaaa7314e5509bcce4bf0b85e5533ae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CustomTerminalColor\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "blogdaren",
+                    "email": "blogdaren@163.com",
+                    "homepage": "http://www.blogdaren.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "A toolkit used to display customizable & colorful text on terminal with PHP",
+            "homepage": "http://www.blogdaren.com",
+            "time": "2018-11-20T19:58:03+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "blogdaren/custom-terminal-color": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.3"
+    },
+    "platform-dev": []
+}
