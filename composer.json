@@ -18,7 +18,7 @@
     "support": {
     },
     "require": {
-        "blogdaren/custom-terminal-color": "dev-master"
+        "blogdaren/custom-terminal-color": "^1.0.0"
     },
     "suggest": {
     },

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "040d7d6270da82d19f81a37ba1655ec9",
+    "content-hash": "0347b79b6efa2d7f8e9d2e8889891a82",
     "packages": [
         {
             "name": "blogdaren/custom-terminal-color",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blogdaren/CustomTerminalColor.git",
-                "reference": "bddaff2bddaaa7314e5509bcce4bf0b85e5533ae"
+                "reference": "7927a1e1e1c5af65e130f56c08d88b2d8c081b3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blogdaren/CustomTerminalColor/zipball/bddaff2bddaaa7314e5509bcce4bf0b85e5533ae",
-                "reference": "bddaff2bddaaa7314e5509bcce4bf0b85e5533ae",
+                "url": "https://api.github.com/repos/blogdaren/CustomTerminalColor/zipball/7927a1e1e1c5af65e130f56c08d88b2d8c081b3f",
+                "reference": "7927a1e1e1c5af65e130f56c08d88b2d8c081b3f",
                 "shasum": ""
             },
             "require": {
@@ -43,19 +43,15 @@
             ],
             "description": "A toolkit used to display customizable & colorful text on terminal with PHP",
             "homepage": "http://www.blogdaren.com",
-            "time": "2018-11-20T19:58:03+00:00"
+            "time": "2018-11-20T18:00:47+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "blogdaren/custom-terminal-color": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {
-        "php": ">=5.3"
-    },
+    "platform": [],
     "platform-dev": []
 }
