@@ -52,7 +52,7 @@ Logger::showCrazy($arg1, $arg3, $arg4);
   >> Logger::LOG_LEVEL_ERROR
   >> Logger::LOG_LEVEL_CRAZY
 * $arg3: whether to print log or not on terminal, default `true`
-* $arg4: where to store log file, default `/tmp/default.log`
+* $arg4: where to store log file, default `/tmp/default.log`, or u can leave it empty then will do nothing
 ```
 
 ## Demostrate
