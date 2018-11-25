@@ -182,10 +182,11 @@ class Logger
         self::$logFile && file_put_contents((string)self::$logFile, $msg, FILE_APPEND | LOCK_EX);
 
         //show colorful text by level 
-        $level == self::LOG_LEVEL_DEBUG && $msg = Color::getColorfulText($msg, 'purple');
-        $level == self::LOG_LEVEL_WARN  && $msg = Color::getColorfulText($msg, 'brown');
-        $level == self::LOG_LEVEL_ERROR && $msg = Color::getColorfulText($msg, 'red');
-        $level == self::LOG_LEVEL_CRAZY && $msg = Color::getColorfulText($msg, 'light_red');
+        $level == self::LOG_LEVEL_INFO  && $msg = Color::getColorfulText($msg, 'white', 'black');
+        $level == self::LOG_LEVEL_DEBUG && $msg = Color::getColorfulText($msg, 'black', 'green');
+        $level == self::LOG_LEVEL_WARN  && $msg = Color::getColorfulText($msg, 'black', 'yellow');
+        $level == self::LOG_LEVEL_ERROR && $msg = Color::getColorfulText($msg, 'white', 'red');
+        $level == self::LOG_LEVEL_CRAZY && $msg = Color::getColorfulText($msg, 'white', 'blue');
 
         //only show in DEBUG mode
         true === self::$debug && self::safeEcho($msg);
@@ -218,6 +219,76 @@ class Logger
         }
 
         return self::_log($msg, $level);
+    }
+
+    /**
+     * @brief    showInfo   
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string
+     */
+    static public function showInfo($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    {
+        return self::show($msg, self::LOG_LEVEL_INFO, $debug, $log_file);
+    }
+
+    /**
+     * @brief    showDebug  
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string
+     */
+    static public function showDebug($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    {
+        return self::show($msg, self::LOG_LEVEL_DEBUG, $debug, $log_file);
+    }
+
+    /**
+     * @brief    showWarning    
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string
+     */
+    static public function showWarning($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    {
+        return self::show($msg, self::LOG_LEVEL_WARN, $debug, $log_file);
+    }
+
+    /**
+     * @brief    showError  
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string
+     */
+    static public function showError($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    {
+        return self::show($msg, self::LOG_LEVEL_ERROR, $debug, $log_file);
+    }
+
+    /**
+     * @brief    showCrazy  
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string 
+     */
+    static public function showCrazy($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    {
+        return self::show($msg, self::LOG_LEVEL_CRAZY, $debug, $log_file);
     }
 
     /**

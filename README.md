@@ -24,17 +24,26 @@ use Logger\Logger;
 while(1)
 {
     usleep(500000);
-    Logger::show('with info level', Logger::LOG_LEVEL_INFO);
-    Logger::show('with debug level', Logger::LOG_LEVEL_DEBUG);
-    Logger::show('with warning level', Logger::LOG_LEVEL_WARN);
-    Logger::show('with error level', Logger::LOG_LEVEL_ERROR);
-    Logger::show('with crazy level', Logger::LOG_LEVEL_CRAZY);
+    Logger::showInfo('with INFO level');
+    Logger::showDebug('with DEBUG level');
+    Logger::showWarning('with WARNING level');
+    Logger::showError('with ERROR level');
+    Logger::showCrazy('with CRAZY level');
 }
 ```
 
 ## Usage
-```php
+1、Available Method:
+```
 Logger::show($arg1, $arg2, $arg3, $arg4);
+Logger::showInfo($arg1, $arg3, $arg4);
+Logger::showDebug($arg1, $arg3, $arg4);
+Logger::showWarning($arg1, $arg3, $arg4);
+Logger::showError($arg1, $arg3, $arg4);
+Logger::showCrazy($arg1, $arg3, $arg4);
+```
+2、The method listed above share the same arguments:
+```php
 * $arg1: message to be logged
 * $arg2: log level with 5 options: 
   >> Logger::LOG_LEVEL_INFO

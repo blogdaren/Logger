@@ -5,9 +5,9 @@ use Logger\Logger;
 while(1)
 {
     usleep(500000);
-    Logger::show('with info level', Logger::LOG_LEVEL_INFO);
-    Logger::show('with debug level', Logger::LOG_LEVEL_DEBUG);
-    Logger::show('with warning level', Logger::LOG_LEVEL_WARN);
-    Logger::show('with error level', Logger::LOG_LEVEL_ERROR);
-    Logger::show('with crazy level', Logger::LOG_LEVEL_CRAZY);
+    Logger::showInfo('with INFO level');
+    Logger::showDebug('with DEBUG level');
+    Logger::showWarning('with WARNING level');
+    Logger::showError('with ERROR level');
+    Logger::showCrazy('with CRAZY level');
 }
