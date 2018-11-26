@@ -222,7 +222,7 @@ class Logger
     }
 
     /**
-     * @brief    showInfo   
+     * @brief    info   
      *
      * @param    string  $msg
      * @param    boolean $debug
@@ -230,13 +230,13 @@ class Logger
      *
      * @return   string
      */
-    static public function showInfo($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function info($msg = '', $debug = true, $log_file = '/tmp/default.log')
     {
         return self::show($msg, self::LOG_LEVEL_INFO, $debug, $log_file);
     }
 
     /**
-     * @brief    showDebug  
+     * @brief    debug  
      *
      * @param    string  $msg
      * @param    boolean $debug
@@ -244,13 +244,13 @@ class Logger
      *
      * @return   string
      */
-    static public function showDebug($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function debug($msg = '', $debug = true, $log_file = '/tmp/default.log')
     {
         return self::show($msg, self::LOG_LEVEL_DEBUG, $debug, $log_file);
     }
 
     /**
-     * @brief    showWarning    
+     * @brief    warning    
      *
      * @param    string  $msg
      * @param    boolean $debug
@@ -258,13 +258,13 @@ class Logger
      *
      * @return   string
      */
-    static public function showWarning($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function warning($msg = '', $debug = true, $log_file = '/tmp/default.log')
     {
         return self::show($msg, self::LOG_LEVEL_WARN, $debug, $log_file);
     }
 
     /**
-     * @brief    showError  
+     * @brief    error  
      *
      * @param    string  $msg
      * @param    boolean $debug
@@ -272,13 +272,13 @@ class Logger
      *
      * @return   string
      */
-    static public function showError($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function error($msg = '', $debug = true, $log_file = '/tmp/default.log')
     {
         return self::show($msg, self::LOG_LEVEL_ERROR, $debug, $log_file);
     }
 
     /**
-     * @brief    showCrazy  
+     * @brief    crazy  
      *
      * @param    string  $msg
      * @param    boolean $debug
@@ -286,7 +286,7 @@ class Logger
      *
      * @return   string 
      */
-    static public function showCrazy($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function crazy($msg = '', $debug = true, $log_file = '/tmp/default.log')
     {
         return self::show($msg, self::LOG_LEVEL_CRAZY, $debug, $log_file);
     }

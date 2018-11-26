@@ -36,11 +36,11 @@ while(1)
 1、Available Method:
 ```
 Logger::show($arg1, $arg2, $arg3, $arg4);
-Logger::showInfo($arg1, $arg3, $arg4);
-Logger::showDebug($arg1, $arg3, $arg4);
-Logger::showWarning($arg1, $arg3, $arg4);
-Logger::showError($arg1, $arg3, $arg4);
-Logger::showCrazy($arg1, $arg3, $arg4);
+Logger::info($arg1, $arg3, $arg4);
+Logger::debug($arg1, $arg3, $arg4);
+Logger::warning($arg1, $arg3, $arg4);
+Logger::error($arg1, $arg3, $arg4);
+Logger::crazy($arg1, $arg3, $arg4);
 ```
 2、The method listed above share the same arguments:
 ```php
