@@ -202,7 +202,8 @@ class Logger
      */
     static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '/tmp/default.log')
     {
-        if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
+        //if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
+        if("linux" != strtolower(PHP_OS)) $logFile = 'C:\\default.log'; 
 
         self::$debug = $debug === true ? true : false;
         self::$logFile = $log_file;
