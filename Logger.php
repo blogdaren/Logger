@@ -72,6 +72,13 @@ class Logger
     static  public  $logFile = '';
 
     /**
+     * we can custom the message prefix
+     *
+     * @var string
+     */
+    static  public  $msgPrefix = '';
+
+    /**
      * standard output stream
      *
      * @var resource
@@ -177,7 +184,7 @@ class Logger
         list($ts, $ms) = explode(".", sprintf("%f", microtime(true)));
         $time = date("Y-m-d H:i:s") . "." . str_pad($ms, 6, 0);
         $prefix = "$time | $log_level | ";
-        $msg = $prefix . $msg . PHP_EOL;
+        $msg = $prefix . self::$msgPrefix . $msg . PHP_EOL;
 
         self::$logFile && file_put_contents((string)self::$logFile, $msg, FILE_APPEND | LOCK_EX);
 
@@ -323,6 +330,18 @@ class Logger
         }
 
         return $log_level;
+    }
+
+    /**
+     * @brief    set the message prefix
+     *
+     * @return   null
+     */
+    static public function setMessagePrefix($prefix = '')
+    {
+        if(!is_string($prefix)) return;
+
+        !empty($prefix) && self::$msgPrefix = $prefix . ' | ';
     }
 
 }
