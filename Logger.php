@@ -20,7 +20,7 @@ class Logger
      *
      * @var string
      */
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.7';
 
     /**
      * log level code for debuging mode
@@ -91,6 +91,19 @@ class Logger
      * @var boolean
      */
     static  protected	$_outputDecorated   = false;
+
+    /**
+     * determine whether the log to be shown or not
+     *
+     * @var array 
+     */
+    static  public  $option = array(
+        self::LOG_LEVEL_INFO    => 1,
+        self::LOG_LEVEL_DEBUG   => 1,
+        self::LOG_LEVEL_WARN    => 1,
+        self::LOG_LEVEL_ERROR   => 1,
+        self::LOG_LEVEL_CRAZY   => 1,
+    );
 
     /**
      * @brief    safeEcho
@@ -209,6 +222,9 @@ class Logger
      */
     static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '/tmp/default.log')
     {
+        //check option
+        if(0 == self::$option[$level]) return;
+
         //if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
         if("linux" != strtolower(PHP_OS)) $logFile = 'C:\\default.log'; 
 
@@ -344,5 +360,46 @@ class Logger
         !empty($prefix) && self::$msgPrefix = $prefix . ' | ';
     }
 
+    /**
+     * @brief    disable some option to determine which log level shoud not be shown
+     *
+     * @param    string|array  $levels
+     *
+     * @return   null
+     */
+    static public function disableOption($levels = '')
+    {
+        if(empty($levels)) return;
+
+        !is_array($levels) && $levels = array($levels);
+
+        foreach($levels as $level)
+        {
+            $level = strtoupper($level);
+            if(!array_key_exists($level, self::$option)) continue;
+            self::$option[$level] = 0;
+        }
+    }
+
+    /**
+     * @brief    enable some option to determine which log level shoud be shown
+     *
+     * @param    string|array  $levels
+     *
+     * @return   null
+     */
+    static public function enableOption($levels = '')
+    {
+        if(empty($levels)) return;
+
+        !is_array($levels) && $levels = array($levels);
+
+        foreach($levels as $level)
+        {
+            $level = strtoupper($level);
+            if(!array_key_exists($level, self::$option)) continue;
+            self::$option[$level] = 1;
+        }
+    }
 }
 
