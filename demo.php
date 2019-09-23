@@ -2,11 +2,10 @@
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 use Logger\Logger;
 
-
 //try to disable LOG_LEVEL_ERROR option
-Logger::disableOption([
+Logger::disableOption(array(
     Logger::LOG_LEVEL_ERROR,
-]);
+));
 
 
 $now_time = time();
@@ -22,8 +21,8 @@ while(1)
     // try to re-enable LOG_LEVEL_ERROR option
     if(time() - $now_time > 1)
     {
-        Logger::enableOption([
+        Logger::enableOption(array(
             Logger::LOG_LEVEL_ERROR,
-        ]);
+        ));
     }
 }

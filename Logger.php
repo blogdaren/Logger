@@ -190,7 +190,7 @@ class Logger
      */
     static private function _log($msg, $level = self::LOG_LEVEL_INFO)
     {
-        if(empty($msg)) return;
+        if(!is_numeric($msg) && !is_string($msg)) return;
 
         $log_level = self::getLogLevel($level);
         $log_level = str_pad($log_level, 5, ' ', STR_PAD_RIGHT);
