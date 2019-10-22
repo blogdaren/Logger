@@ -41,6 +41,8 @@ Logger::debug($arg1, $arg3, $arg4);
 Logger::warning($arg1, $arg3, $arg4);
 Logger::error($arg1, $arg3, $arg4);
 Logger::crazy($arg1, $arg3, $arg4);
+Logger::disableOption(['info', 'error']);
+Logger::enableOption(['info', 'error']);
 ```
 2、The method listed above share the same arguments:
 ```php

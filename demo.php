@@ -1,11 +1,17 @@
 <?php
+/**
+ * @script   demo.php
+ * @brief    just a demo
+ * @author   blogdaren<blogdaren@163.com>
+ * @version  1.0.0
+ * @modify   2019-10-23
+ */
+
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 use Logger\Logger;
 
-//try to disable LOG_LEVEL_ERROR option
-Logger::disableOption(array(
-    Logger::LOG_LEVEL_ERROR,
-));
+//e.g try to disable `error` option to prevent error log to be shown  
+Logger::disableOption(['error']);
 
 
 $now_time = time();
@@ -21,8 +27,6 @@ while(1)
     // try to re-enable LOG_LEVEL_ERROR option
     if(time() - $now_time > 1)
     {
-        Logger::enableOption(array(
-            Logger::LOG_LEVEL_ERROR,
-        ));
+        Logger::enableOption(['error']);
     }
 }

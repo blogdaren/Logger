@@ -1,11 +1,11 @@
 <?php
 /**
- * @script   Base.php
- * @brief    This file is part of PHPForker
+ * @script   Logger.php
+ * @brief    A simple and lightful logger for PHP
  * @author   blogdaren<blogdaren@163.com>
  * @link     http://www.blogdaren.com
  * @version  1.0.0
- * @modify   2018-10-11
+ * @modify   2019-10-23
  */
 
 namespace Logger;
@@ -20,7 +20,7 @@ class Logger
      *
      * @var string
      */
-    const VERSION = '1.0.8';
+    const VERSION = '1.0.9';
 
     /**
      * log level code for debuging mode
@@ -98,11 +98,11 @@ class Logger
      * @var array 
      */
     static  public  $option = array(
-        self::LOG_LEVEL_INFO    => 1,
-        self::LOG_LEVEL_DEBUG   => 1,
-        self::LOG_LEVEL_WARN    => 1,
-        self::LOG_LEVEL_ERROR   => 1,
-        self::LOG_LEVEL_CRAZY   => 1,
+        'INFO'  => 1,
+        'DEBUG' => 1,
+        'WARN'  => 1,
+        'ERROR' => 1,
+        'CRAZY' => 1,
     );
 
     /**
@@ -223,7 +223,7 @@ class Logger
     static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '/tmp/default.log')
     {
         //check option
-        if(0 == self::$option[$level]) return;
+        if(0 == self::$option[self::getLogLevel($level)]) return;
 
         //if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
         if("linux" != strtolower(PHP_OS)) $logFile = 'C:\\default.log'; 
