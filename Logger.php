@@ -20,7 +20,7 @@ class Logger
      *
      * @var string
      */
-    const VERSION = '1.0.9';
+    const VERSION = '1.1.0';
 
     /**
      * log level code for debuging mode
@@ -220,30 +220,52 @@ class Logger
      *
      * @return   void
      */
-    static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = true, $log_file = '/tmp/default.log')
+    static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = NULL, $log_file = '')
     {
         //check option
         if(0 == self::$option[self::getLogLevel($level)]) return;
 
-        //if("linux" != strtolower(PHP_OS)) throw new Exception('only support LINUX currently......');
-        if("linux" != strtolower(PHP_OS)) $logFile = 'C:\\default.log'; 
+        is_bool($debug)   && self::$debug = $debug;
+        !empty($log_file) && self::$logFile = $log_file;
 
-        self::$debug = $debug === true ? true : false;
-        self::$logFile = $log_file;
-
-        if(!empty(self::$logFile))
+        if(true !== self::rebuildLogFile())
         {
-            if(!is_file(self::$logFile))
-            {
-                @touch(self::$logFile);
-                @chmod(self::$logFile, 0755);
-            }
-
-            if(!file_exists(self::$logFile))  throw new Exception('invalid log file path......');
+            throw new Exception('Invalid log file path given......');
         }
 
         return self::_log($msg, $level);
     }
+
+    /**
+     * @brief    rebuildLogFile     
+     *
+     * @return   boolean
+     */
+    static public function rebuildLogFile()
+    {
+        if(empty(self::$logFile)) return true;
+
+        $pathinfo = pathinfo(self::$logFile);
+        $dirname = $pathinfo['dirname'];
+        $basename = $pathinfo['basename'];
+        !preg_match('/^\/.*/is', $dirname) && $dirname = sys_get_temp_dir() . DIRECTORY_SEPARATOR. $dirname;
+        $fullfile = $dirname. DIRECTORY_SEPARATOR . $basename;
+        $fullfile = preg_replace("/\/*\//is", DIRECTORY_SEPARATOR, $fullfile);
+
+        $result = self::createMultiDirectory($dirname);
+        if(false == $result) return false;
+
+        if(!is_file($fullfile))
+        {
+            @touch($fullfile);
+            @chmod($fullfile, 0755);
+        }
+
+        self::setLogFile($fullfile);
+
+        return true;
+    }
+
 
     /**
      * @brief    info   
@@ -254,7 +276,7 @@ class Logger
      *
      * @return   string
      */
-    static public function info($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function info($msg = '', $debug = NULL, $log_file = '')
     {
         return self::show($msg, self::LOG_LEVEL_INFO, $debug, $log_file);
     }
@@ -268,7 +290,7 @@ class Logger
      *
      * @return   string
      */
-    static public function debug($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function debug($msg = '', $debug = NULL, $log_file = '')
     {
         return self::show($msg, self::LOG_LEVEL_DEBUG, $debug, $log_file);
     }
@@ -282,7 +304,7 @@ class Logger
      *
      * @return   string
      */
-    static public function warning($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function warning($msg = '', $debug = NULL, $log_file = '')
     {
         return self::show($msg, self::LOG_LEVEL_WARN, $debug, $log_file);
     }
@@ -296,7 +318,7 @@ class Logger
      *
      * @return   string
      */
-    static public function error($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function error($msg = '', $debug = NULL, $log_file = '')
     {
         return self::show($msg, self::LOG_LEVEL_ERROR, $debug, $log_file);
     }
@@ -310,7 +332,7 @@ class Logger
      *
      * @return   string 
      */
-    static public function crazy($msg = '', $debug = true, $log_file = '/tmp/default.log')
+    static public function crazy($msg = '', $debug = NULL, $log_file = '')
     {
         return self::show($msg, self::LOG_LEVEL_CRAZY, $debug, $log_file);
     }
@@ -361,13 +383,13 @@ class Logger
     }
 
     /**
-     * @brief    disable some option to determine which log level shoud not be shown
+     * @brief    disable log level to determine which log level shoud not be shown
      *
      * @param    string|array  $levels
      *
      * @return   null
      */
-    static public function disableOption($levels = '')
+    static public function disableLogLevel($levels = '')
     {
         if(empty($levels)) return;
 
@@ -382,13 +404,13 @@ class Logger
     }
 
     /**
-     * @brief    enable some option to determine which log level shoud be shown
+     * @brief    enable log level to determine which log level shoud be shown
      *
      * @param    string|array  $levels
      *
      * @return   null
      */
-    static public function enableOption($levels = '')
+    static public function enableLogLevel($levels = '')
     {
         if(empty($levels)) return;
 
@@ -401,5 +423,56 @@ class Logger
             self::$option[$level] = 1;
         }
     }
+
+    /**
+     * @brief    setLogFile     
+     *
+     * @param    string  $file
+     *
+     * @return   void
+     */
+    static public function setLogFile($file = '')
+    {
+        !is_string($file) && $file = '';
+
+        self::$logFile = $file;
+    }
+
+    /**
+     * @brief    setDebugMode   
+     *
+     * @param    string  $mode
+     *
+     * @return   void
+     */
+    static public function setDebugMode($mode = true)
+    {
+        !is_bool($mode) && $mode = true;
+
+        self::$debug = true == $mode ? true : false;
+    }
+
+	/**
+	 * @brief  createMultiDirectory
+	 *
+	 * @param  string  $dir	    a/b/c
+	 * @param  string  $mode    privileges
+	 *
+	 * @return boolean
+	 */
+	static public function createMultiDirectory($dir, $mode = 0777)
+	{
+		if(is_dir($dir))
+		{
+			return true;
+		}
+
+		if(!self::createMultiDirectory(dirname($dir), $mode))
+		{
+			return false;
+		}
+
+		return mkdir($dir, $mode);
+	}
 }
 

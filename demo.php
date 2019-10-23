@@ -10,9 +10,14 @@
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 use Logger\Logger;
 
-//e.g try to disable `error` option to prevent error log to be shown  
-Logger::disableOption(['error']);
+//e.g try to disable `error` log level to prevent it to be shown & written
+Logger::disableLogLevel(['error']);
 
+//set log file
+Logger::setLogFile('/tmp/logs/demo.log');
+
+//set debug mode
+Logger::setDebugMode(true);
 
 $now_time = time();
 while(1)
@@ -24,9 +29,9 @@ while(1)
     Logger::crazy('with CRAZY level');
     Logger::error('with ERROR level');
 
-    // try to re-enable LOG_LEVEL_ERROR option
+    //try to re-enable LOG_LEVEL_ERROR option
     if(time() - $now_time > 1)
     {
-        Logger::enableOption(['error']);
+        Logger::enableLogLevel(['error']);
     }
 }
