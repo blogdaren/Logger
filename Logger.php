@@ -201,15 +201,18 @@ class Logger
 
         self::$logFile && file_put_contents((string)self::$logFile, $msg, FILE_APPEND | LOCK_EX);
 
-        //show colorful text by level 
-        $level == self::LOG_LEVEL_INFO  && $msg = Color::getColorfulText($msg, 'white', 'black');
-        $level == self::LOG_LEVEL_DEBUG && $msg = Color::getColorfulText($msg, 'black', 'green');
-        $level == self::LOG_LEVEL_WARN  && $msg = Color::getColorfulText($msg, 'black', 'yellow');
-        $level == self::LOG_LEVEL_ERROR && $msg = Color::getColorfulText($msg, 'white', 'red');
-        $level == self::LOG_LEVEL_CRAZY && $msg = Color::getColorfulText($msg, 'white', 'blue');
+        //only logs in DEBUG mode and granted can be shown on terminal
+        if(self::$option[self::getLogLevel($level)] && true === self::$debug)
+        {
+            //show colorful text by level 
+            $level == self::LOG_LEVEL_INFO  && $msg = Color::getColorfulText($msg, 'white', 'black');
+            $level == self::LOG_LEVEL_DEBUG && $msg = Color::getColorfulText($msg, 'black', 'green');
+            $level == self::LOG_LEVEL_WARN  && $msg = Color::getColorfulText($msg, 'black', 'yellow');
+            $level == self::LOG_LEVEL_ERROR && $msg = Color::getColorfulText($msg, 'white', 'red');
+            $level == self::LOG_LEVEL_CRAZY && $msg = Color::getColorfulText($msg, 'white', 'blue');
 
-        //only show in DEBUG mode
-        true === self::$debug && self::safeEcho($msg);
+            self::safeEcho($msg);
+        }
     }
 
     /**
@@ -222,9 +225,6 @@ class Logger
      */
     static public function show($msg, $level = self::LOG_LEVEL_INFO, $debug = NULL, $log_file = '')
     {
-        //check option
-        if(0 == self::$option[self::getLogLevel($level)]) return;
-
         is_bool($debug)   && self::$debug = $debug;
         !empty($log_file) && self::$logFile = $log_file;
 
@@ -310,6 +310,20 @@ class Logger
     }
 
     /**
+     * @brief    alias of self::warning()
+     *
+     * @param    string  $msg
+     * @param    boolean $debug
+     * @param    string  $log_file
+     *
+     * @return   string
+     */
+    static public function warn($msg = '', $debug = NULL, $log_file = '')
+    {
+        return self::warning($msg, self::LOG_LEVEL_WARN, $debug, $log_file);
+    }
+
+    /**
      * @brief    error  
      *
      * @param    string  $msg
@@ -383,13 +397,13 @@ class Logger
     }
 
     /**
-     * @brief    disable log level to determine which log level shoud not be shown
+     * @brief    determine which log level shoud not be shown
      *
      * @param    string|array  $levels
      *
      * @return   null
      */
-    static public function disableLogLevel($levels = '')
+    static public function disableLogShowWithLevel($levels = '')
     {
         if(empty($levels)) return;
 
@@ -404,13 +418,13 @@ class Logger
     }
 
     /**
-     * @brief    enable log level to determine which log level shoud be shown
+     * @brief    determine which log level shoud be shown
      *
      * @param    string|array  $levels
      *
      * @return   null
      */
-    static public function enableLogLevel($levels = '')
+    static public function enableLogShowWithLevel($levels = '')
     {
         if(empty($levels)) return;
 
@@ -462,10 +476,15 @@ class Logger
 	 */
 	static public function createMultiDirectory($dir, $mode = 0777)
 	{
-		if(is_dir($dir))
+		if(is_dir($dir) || file_exists($dir))
 		{
 			return true;
 		}
+
+        return mkdir($dir, $mode, true);
+
+
+
 
 		if(!self::createMultiDirectory(dirname($dir), $mode))
 		{

@@ -38,11 +38,11 @@ while(1)
 Logger::show($arg1, $arg2, $arg3, $arg4);
 Logger::info($arg1, $arg3, $arg4);
 Logger::debug($arg1, $arg3, $arg4);
-Logger::warning($arg1, $arg3, $arg4);
+Logger::warn($arg1, $arg3, $arg4);
 Logger::error($arg1, $arg3, $arg4);
 Logger::crazy($arg1, $arg3, $arg4);
-Logger::disableLogLevel(['info', 'error']);
-Logger::enableLogLevel(['info', 'error']);
+Logger::disableLogShowWithLevel(['info', 'error']);
+Logger::enableLogShowWithLevel(['info', 'error']);
 Logger::setLogFile('/tmp/demo.log');
 Logger::setDebugMode(true);
 ```
@@ -55,8 +55,8 @@ Logger::setDebugMode(true);
   >> Logger::LOG_LEVEL_WARN
   >> Logger::LOG_LEVEL_ERROR
   >> Logger::LOG_LEVEL_CRAZY
-* $arg3: whether to print log or not on terminal, default `NULL`
-* $arg4: where to store log file, default `''`, u can keep it empty then will do nothing
+* $arg3: determine whether to print log or not, default `NULL`.
+* $arg4: where to store log file, default `''`, u can keep it empty then will do nothing.
 ```
 
 ## Demostrate

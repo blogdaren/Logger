@@ -10,13 +10,15 @@
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 use Logger\Logger;
 
-//e.g try to disable `error` log level to prevent it to be shown & written
-Logger::disableLogLevel(['error']);
+//try to disable `error` log level to prevent it to be shown
+Logger::disableLogShowWithLevel(['error']);
 
-//set log file
-Logger::setLogFile('/tmp/logs/demo.log');
+//set log file: 
+//1. do nth when keep empty, or put logs into the file given
+//2. note that nested directory will be created automatically 
+Logger::setLogFile('/tmp/logs/user/cash/demo.log');
 
-//set debug mode
+//set debug mode: default as `true`
 Logger::setDebugMode(true);
 
 $now_time = time();
@@ -25,13 +27,15 @@ while(1)
     usleep(500000);
     Logger::info('with INFO level');
     Logger::debug('with DEBUG level');
-    Logger::warning('with WARNING level');
+    Logger::warn('with WARNING level');
     Logger::crazy('with CRAZY level');
     Logger::error('with ERROR level');
 
-    //try to re-enable LOG_LEVEL_ERROR option
+    //try to re-enable 'error' log level to be shown
     if(time() - $now_time > 1)
     {
-        Logger::enableLogLevel(['error']);
+        Logger::enableLogShowWithLevel(['error']);
     }
 }
+
+
