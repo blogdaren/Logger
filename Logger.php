@@ -20,7 +20,7 @@ class Logger
      *
      * @var string
      */
-    const VERSION = '1.1.1';
+    const VERSION = '1.1.2';
 
     /**
      * log level code for debuging mode
@@ -115,12 +115,19 @@ class Logger
      */
     static public function safeEcho($msg, $show_colorful = true)
     {
+        if('\\' === DIRECTORY_SEPARATOR)
+        {
+            echo $msg;
+            return false;
+        }
+
         $stream = self::setOutputStream();
         if(!$stream) return false;
 
         if($show_colorful) 
         {
-            $line = $white = $yellow = $red = $green = $blue = $skyblue = $end = '';
+            $line = $white = $yellow = $red = $green = $blue = $skyblue = $ry = $ul = $end = '';
+
             if(self::$_outputDecorated) 
             {
                 $line    =  "\033[1A\n\033[K";
