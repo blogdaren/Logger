@@ -3,9 +3,6 @@
 ## What is it
 A simple and lightful logger for PHP
 
-## Logger是什么
-一个简洁的、轻量级的PHP日志工具
-
 ## Installation
 ```
 composer require blogdaren/logger
@@ -32,8 +29,8 @@ while(1)
 }
 ```
 
-## Usage
-1、Available Method:
+## API
+1、Available Methods:
 ```
 Logger::show($arg1, $arg2, $arg3, $arg4);
 Logger::info($arg1, $arg3, $arg4);
@@ -46,7 +43,7 @@ Logger::enableLogShowWithLevel(['info', 'error']);
 Logger::setLogFile('/tmp/demo.log');
 Logger::setDebugMode(true);
 ```
-2、The method listed above share the same arguments:
+2、The methods listed above share the same arguments:
 ```php
 * $arg1: message to be logged
 * $arg2: log level with 5 options: 
@@ -56,7 +53,7 @@ Logger::setDebugMode(true);
   >> Logger::LOG_LEVEL_ERROR
   >> Logger::LOG_LEVEL_CRAZY
 * $arg3: determine whether to print log or not, default `NULL`.
-* $arg4: where to store log file, default `''`, u can keep it empty then will do nothing.
+* $arg4: where to save log file, default is empty, which means will do nothing.
 ```
 
 ## Demostrate
@@ -64,8 +61,4 @@ Logger::setDebugMode(true);
 ----
 ![demo2](https://github.com/blogdaren/Logger/blob/master/media/demo2.png)
 ----
-
-## Related links and thanks
-
-* [http://www.blogdaren.com](http://www.blogdaren.com)
 

@@ -4,14 +4,14 @@
     "keywords": [
         "logger"
     ],
-    "homepage": "http://www.blogdaren.com",
+    "homepage": "http://www.phpcreeper.com",
     "license": "MIT",
-    "description": "A simple console logger for PHP",
+    "description": "A simple and lightful logger for PHP",
     "authors": [
         {
             "name": "blogdaren",
             "email": "blogdaren@163.com",
-            "homepage": "http://www.blogdaren.com",
+            "homepage": "http://www.phpcreeper.com",
             "role": "developer"
         }
     ],

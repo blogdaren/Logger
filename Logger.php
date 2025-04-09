@@ -3,7 +3,7 @@
  * @script   Logger.php
  * @brief    A simple and lightful logger for PHP
  * @author   blogdaren<blogdaren@163.com>
- * @link     http://www.blogdaren.com
+ * @link     http://www.phpcreeper.com
  * @version  1.0.0
  * @modify   2019-10-23
  */
@@ -20,7 +20,7 @@ class Logger
      *
      * @var string
      */
-    const VERSION = '1.1.2';
+    const VERSION = '1.1.3';
 
     /**
      * log level code for debuging mode
